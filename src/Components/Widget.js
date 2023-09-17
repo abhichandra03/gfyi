@@ -4,6 +4,8 @@ import axios from "axios"
 import 'react-circular-progressbar/dist/styles.css';
 import CircularProgress from '@mui/material/CircularProgress';
 import DataComp from './DataComp';
+import UrlComp from './UrlComp';
+import Fetching from './Fetching';
 
 
 const Widget = () => {
@@ -15,10 +17,13 @@ const Widget = () => {
     const [results, setResults] = useState({})
     const [taskid, setTaskid] = useState("")
     const [waiting, setWaiting] = useState(false)
-
-    const handleSubmit =() =>{
-        console.log(texturl);
-        // getTask()
+    
+    const searchUrl =(url) =>{
+      const text = url
+      text.replace('www.', "")
+      text.replace("https://","")
+      text.replace("http://","")
+      setTexturl(text)
     }
 
     const post_array = [];
@@ -30,7 +35,7 @@ const Widget = () => {
     const getTask= async()=> {
         const config = {
                 method: 'post',
-                url: 'https://sandbox.dataforseo.com/v3/on_page/task_post',
+                url: 'https://api.dataforseo.com/v3/on_page/task_post',
                 auth:{
                   username: process.env.REACT_APP_LOGIN,
                   password: process.env.REACT_APP_PASSWORD
@@ -43,7 +48,6 @@ const Widget = () => {
             await axios(config).then(function (response) {
               var data = response['data']['tasks'];
               // Result data
-              console.log(data);
               const taskid = data[0].id
               setTaskid(taskid)
             }).catch(function (error) {
@@ -67,7 +71,7 @@ const Widget = () => {
           const getData =async() => {
             const config = {
               method: 'get',
-            url: 'https://sandbox.dataforseo.com/v3/on_page/summary/' + taskid,
+            url: 'https://api.dataforseo.com/v3/on_page/summary/' + taskid,
             auth:{
               username: process.env.REACT_APP_LOGIN,
               password: process.env.REACT_APP_PASSWORD
@@ -88,25 +92,24 @@ const Widget = () => {
         }
   
       return isPanelDisplayed ? 
-  (<div className='support'>
-    <div className='cancel'>
+      Object.keys(results).length!=0?
 
-  <button onClick={() => setIsPanelDisplayed(false)}><BsChevronDown size={20}/></button>
-    </div>
-    <div className='input'>
-        <input value={texturl} onChange={e => setTexturl(e.target.value)}></input>
-      <button onClick={getTask}>Send</button>
-    </div>
-    {
-      Object.keys(results).length!=0 ?
-      (results[0].result[0].page_metrics == null ? (<div><CircularProgress/></div>):
-      (
+        <DataComp results={results} setResults={setResults} setIsPanelDisplayed={setIsPanelDisplayed} setWaiting={setWaiting}/>
+    
+        : 
+        (waiting? 
+        <Fetching setIsPanelDisplayed={setIsPanelDisplayed} setResults={setResults} setWaiting={setWaiting}/>
+        
+        :
+      <div className='url'>
+        <div className='cancel'>
 
-        <DataComp results={results}/>
-      )
-    ):(waiting? <div className='loading'> <CircularProgress/> </div>:<div className='message'>Enter URL for SEO Data</div>)
-    }
-  </div>) : 
+        <button onClick={() => setIsPanelDisplayed(false)}><BsChevronDown size={20}/></button>
+        </div>
+        <UrlComp texturl={texturl} searchUrl={searchUrl} getTask={getTask}/>
+        
+      </div> )  
+   : 
   (<button className='widget-button' onClick={() => setIsPanelDisplayed(true)}>Do you want to get data</button>)
 }
 

@@ -8,10 +8,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
-}
 .App .widget-button{
   width: 200px;
   height: 50px;
@@ -21,6 +17,7 @@ code {
   right: 20px;
   border: none;
   border-radius: 10px;
+
 }
 
 .App .widget-button:hover{
@@ -29,11 +26,16 @@ code {
   transition: 250ms;
 
 }
+.App .widget-button:active{
+  cursor: pointer;
+  scale: 0.9;
+  transition: 250ms;
 
+}
 
 .App .support{
   width: 20%;
-  height: 50%;
+  height: 40%;
   background-color: rgba(163, 163, 240, 0.699);
   position: absolute;
   bottom: 20px;
@@ -45,20 +47,71 @@ code {
   display: flex;
   flex-direction: column;
 }
-.App .support .cancel{
-  padding-left: 5px;
+.App .url{
+  width: 20%;
+  height: 20%;
+  background-color: rgba(163, 163, 240, 0.699);
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  margin: 5px;
   border: none;
+  border-radius: 10px;
   display: flex;
-  justify-content: right;
+  flex-direction: column;
 }
 
-.App .support .cancel button{
+@media only screen and (max-width: 1248px){
+  .App .url{
+    width: 30%;
+  }
+}
+@media only screen and (max-width: 1248px){
+  .App .support{
+    width: 30%;
+  }
+}
+@media only screen and (max-width: 870px){
+  .App .support{
+    width: 40%;
+  }
+}
+@media only screen and (max-width: 660px){
+  .App .support{
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 520px){
+  .App .support{
+    width: 60%;
+    height: 45%;
+  }
+}
+.App .url .cancel{
+  display: flex;
+  justify-content: end;
+}
+.App .support .cancel{
+  border: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.App .support .cancel .fetching:hover{
+  cursor: pointer;
+}
+
+.App .url .cancel button, .App .support .cancel button{
   background-color: inherit;
   border: none;
   padding: 2px;
 }
+.App .url .cancel button:hover, .App .support .cancel button:hover{
+  cursor: pointer;
+}
 
-.App .support .input{
+.App .url .input{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,7 +119,7 @@ code {
   margin: 2px;
 }
 
-.App .support .input input{
+.App .url .input input{
   border: solid 1px gray;
   border-radius: 5px;
   width: full;
@@ -74,39 +127,37 @@ code {
   margin: 2px;
 }
 
-.App .support .input input:focus{
-  border: solid 5px gray;
+.App .url .input input:focus{
+  border: solid 2px gray;
   outline-offset: 0px;
   outline: none;
 }
 
-.App .support .input button{
+.App .url .input button{
   width: min-content;
   border: solid 1px gray;
   border-radius: 7px;
   padding: 5px;
   margin: 5px;
 }
-.App .support .input button:hover{
+.App .url .input button:hover{
   cursor: pointer;
   scale: 1.1;
   transition: 250ms;
 }
+.App .url .input button:active{
+  cursor: pointer;
+  scale: 0.9;
+  transition: 250ms;
+}
 
-.App .support .loading{
+.App .support .loading,.App .support .load{
   display: flex;
   height: 100%;
   justify-content: center;
   align-items: center;
 }
 
-.App .support .message{
-  display: flex;
-  height: 100%;
-  font-size: larger;
-  justify-content: center;
-  align-items: center;
-}
 
 .App .support .result{
   display: flex;
@@ -117,17 +168,22 @@ code {
 }
 
 .App .support .result .score{
+  height: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 0px;
 }
 
+
 .App .support .result .otherData{
+  height: fit-content;
+  position: relative;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
   column-gap: 15px;
   row-gap: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .App .support .result .otherData .grid-item{
@@ -140,9 +196,10 @@ code {
   border: solid 1px;
   border-radius: 10px;
 }
+
 .App .support .result .otherData .grid-item p{
   margin: 0px;
-  padding: 5px;
+  padding: 2px;
 }
 
 
