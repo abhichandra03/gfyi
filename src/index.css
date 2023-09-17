@@ -1,25 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
-
-.App .support{
-  width: 300px;
-  height: 400px;
-  background-color: rgba(163, 163, 240, 0.699);
-  position: fixed;
+.App .widget-button{
+  width: 200px;
+  height: 50px;
+  background-color: rgba(163, 163, 240, 0.699);;
+  position: absolute;
   bottom: 20px;
   right: 20px;
-  padding: 5px;
+  border: none;
+  border-radius: 10px;
+}
+
+.App .widget-button:hover{
+  cursor: pointer;
+  scale: 1.1;
+  transition: 250ms;
+
+}
+
+
+.App .support{
+  width: 20%;
+  height: 50%;
+  background-color: rgba(163, 163, 240, 0.699);
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
   margin: 5px;
   border: none;
   border-radius: 10px;
@@ -39,30 +58,91 @@ code {
   padding: 2px;
 }
 
-.App .support .main-comp{
+.App .support .input{
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  margin: 2px;
 }
 
-.App .support .main-comp input{
+.App .support .input input{
   border: solid 1px gray;
   border-radius: 5px;
   width: full;
   padding: 5px;
+  margin: 2px;
 }
 
-input:focus{
-  border: solid 5px red;
+.App .support .input input:focus{
+  border: solid 5px gray;
   outline-offset: 0px;
   outline: none;
 }
 
-.App .button{
-  width: 200px;
-  height: 50px;
-  background-color: rgba(163, 163, 240, 0.699);;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border: none;
+.App .support .input button{
+  width: min-content;
+  border: solid 1px gray;
+  border-radius: 7px;
+  padding: 5px;
+  margin: 5px;
+}
+.App .support .input button:hover{
+  cursor: pointer;
+  scale: 1.1;
+  transition: 250ms;
+}
+
+.App .support .loading{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.App .support .message{
+  display: flex;
+  height: 100%;
+  font-size: larger;
+  justify-content: center;
+  align-items: center;
+}
+
+.App .support .result{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.App .support .result .score{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App .support .result .otherData{
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 15px;
+  row-gap: 10px;
+  margin-bottom: 5px;
+}
+
+.App .support .result .otherData .grid-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: auto;
+  text-align: center;
+  border: solid 1px;
   border-radius: 10px;
 }
+.App .support .result .otherData .grid-item p{
+  margin: 0px;
+  padding: 5px;
+}
+
+
