@@ -46,7 +46,7 @@ body {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   
 }
 .App .url{
@@ -160,7 +160,9 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+.App .support .scrollable-result{
+  overflow-y: scroll;
+}
 
 .App .support .result{
   display: flex;

@@ -17,7 +17,7 @@ const DataComp = ({results, setResults, setIsPanelDisplayed, setWaiting}) => {
 
       {results[0].result[0].page_metrics == null ? (<div className='load'><CircularProgress/></div>):
         
-        <div>
+        <div className='scrollable-result'>
 
         
         <div className='result'>
