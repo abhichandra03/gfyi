@@ -46,7 +46,6 @@ body {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  /* overflow-y: scroll; */
   
 }
 .App .url{
@@ -62,7 +61,7 @@ body {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  
 }
 
 @media only screen and (max-width: 1248px){
@@ -120,6 +119,7 @@ body {
   align-items: center;
   padding: 5px;
   margin: 2px;
+  overflow-y: scroll;
 }
 
 .App .url .input input{
